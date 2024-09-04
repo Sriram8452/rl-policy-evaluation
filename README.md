@@ -37,25 +37,23 @@ The agent receives a reward of +1 for reaching the goal state (G). The agent rec
 
 ## POLICY EVALUATION FUNCTION
 ```
-def policy_evaluation(pi,P,gamma=1.0,theta=1e-10):
-
-    prev_V=np.zeros(len(P))
-
-    while True:
-        V=np.zeros(len(P))
-        for s in range(len(P)):
-            for prob,next_state,reward,done in P[s][pi(s)]:
-                V[s]+=prob*(reward+gamma*prev_V[next_state]*(not done))
-        if(np.max(np.abs(prev_V-V))<theta):
-            break
-        prev_V=V.copy()
-    return V
+def policy_evaluation(pi,p,gamma=1.0,theta=1e-10):
+  prev_V= np.zeros(len(P))
+  while True:
+    V=np.zeros(len(P))
+    for s in range(len(P)):
+      for prob,next_state,reward,done in P[s][pi(s)]:
+        V[s]+=prob*(reward+gamma*prev_V[next_state]*(not done))
+    if np.max(np.abs(prev_V - V)) < theta:
+         break
+    prev_V=V.copy()
+  return V
 
 # Code to evaluate the first policy
 V1 = policy_evaluation(pi_1, P)
 print_state_value_function(V1, P, n_cols=7, prec=5)
 
-# Code to evaluate the first policy
+# Code to evaluate the second policy
 V2 = policy_evaluation(pi_2, P)
 print_state_value_function(V2, P, n_cols=7, prec=5)
 
@@ -67,21 +65,27 @@ else:
 ```
 ## OUTPUT:
 
-### first policy
-![image](https://github.com/user-attachments/assets/a10a98e6-95c2-44e5-9d8e-b926e9bd6ae0)
-![image](https://github.com/user-attachments/assets/dd936204-0f74-4659-9b17-a6105bcabb65)
-![image](https://github.com/user-attachments/assets/a0a16a9d-6aee-46b1-844e-e70d7210698f)
+### First policy:
+![image](https://github.com/user-attachments/assets/521f8009-0bb2-4beb-b442-c0ea2a49f182)
+![image](https://github.com/user-attachments/assets/0fa7afdb-185e-431a-a18b-b6afb9effbc4)
+![image](https://github.com/user-attachments/assets/10f00736-9cb6-4ef1-8aed-f8bcdf669083)
 
-### second policy
-![image](https://github.com/user-attachments/assets/7877bce5-e59a-460d-b54c-c72d3919da8f)
-![image](https://github.com/user-attachments/assets/05184a24-ddcc-4606-ae0b-c18ea4dc1809)
-![image](https://github.com/user-attachments/assets/93a16b71-50c9-4fc7-a088-41e86b0ab269)
+
+### Second policy:
+![image](https://github.com/user-attachments/assets/f3286a1a-de46-4b97-82ad-f276804b74e3)
+![image](https://github.com/user-attachments/assets/2e2708ca-2580-446a-9d4c-50d0e07edb40)
+![image](https://github.com/user-attachments/assets/4c72e6c6-a25c-4c40-ba4f-67afc059e4c4)
+
+
 
 ### Comparison
-![image](https://github.com/user-attachments/assets/a24cf606-1fca-4f45-84f8-37eeeab7b7c1)
+![image](https://github.com/user-attachments/assets/50b5fefe-bd0d-4937-a693-35aff9b851cf)
+
 
 ### Conclusion
-![image](https://github.com/user-attachments/assets/e6ab186b-5aee-4c20-ab18-fee0faa50604)
+![image](https://github.com/user-attachments/assets/dd463d5c-c2f1-4290-ac60-0f6bd6233d72)
+![image](https://github.com/user-attachments/assets/170abaac-0699-4950-ab63-d698d0210d1d)
+
 
 
 ## RESULT:
